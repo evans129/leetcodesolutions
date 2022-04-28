@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        vector<int>ch(128,-1);
+      int left=0,right=0;
+        int ans=0;
+        while(right<s.length())
+        {
+        char k=s[right];
+        int index=ch[k];
+            if(index!=-1 and index>=left and index<right)
+            {
+            left=index+1;
+            }
+            ans=max(ans,right-left+1);
+            ch[k]=right;
+            right++;
+        }
+        return ans;
+    }
+};
