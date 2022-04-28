@@ -1,0 +1,32 @@
+class Solution {
+public:
+    //expansion around center
+    string expand(string s,int f,int l)
+    {
+    while(f>=0 and l<s.length() and s[f]==s[l])
+    {
+    f--;
+    l++;
+    }
+        string ans="";
+        for(int i=f+1;i<l;i++)
+        {
+        ans+=s[i];
+        }
+        return ans;
+    }
+    string longestPalindrome(string s) {
+        string lps="";
+        string a,b;
+        for(int i=0;i<s.length();i++)
+        {
+        a=expand(s,i,i);
+        b=expand(s,i,i+1);
+        if(lps.length()<a.length())
+            lps=a;
+        if(lps.length()<b.length())
+            lps=b;
+        }
+        return lps;
+    }
+};
